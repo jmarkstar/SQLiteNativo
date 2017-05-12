@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView android:id="@+id/tv_empresa_cliente"
+        android:text="TELEFONICA"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        android:textSize="19sp"
+        android:layout_toLeftOf="@+id/tv_telefono"
+        android:layout_toStartOf="@+id/tv_telefono"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView android:id="@+id/tv_telefono"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:text="4265859"
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView android:id="@+id/tv_nombre_completo"
+        android:text="JUAN CARLOS PEREZ AGUILAR"
+        android:textStyle="bold"
+        android:textSize="19sp"
+        android:layout_marginTop="6dp"
+        android:layout_below="@+id/tv_empresa_cliente"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

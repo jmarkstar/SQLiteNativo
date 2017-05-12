@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="24dp"
+        tools:context="com.jmarkstar.sesion4.activities.ClienteAgregarActivity">
+
+        <LinearLayout
+            android:weightSum="10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView android:src="@drawable/ic_person"
+                android:tint="@color/colorAccent"
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <EditText android:id="@+id/et_nombre_completo"
+                android:layout_weight="8"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:maxLines="1"
+                android:hint="@string/registrar_txt_nombre_completo"
+                android:inputType="textCapWords"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="12dp"
+            android:weightSum="10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView android:src="@drawable/ic_email"
+                android:tint="@color/colorAccent"
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <EditText android:id="@+id/et_email"
+                android:layout_weight="8"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:maxLines="1"
+                android:hint="@string/registrar_txt_email"
+                android:inputType="textEmailAddress"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="12dp"
+            android:weightSum="10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView android:src="@drawable/ic_phone"
+                android:tint="@color/colorAccent"
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <EditText android:id="@+id/et_phone"
+                android:layout_weight="8"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:maxLength="7"
+                android:maxLines="1"
+                android:hint="@string/registrar_txt_telefono"
+                android:inputType="phone"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_marginTop="12dp"
+            android:weightSum="10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView android:src="@drawable/ic_location"
+                android:tint="@color/colorAccent"
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <EditText android:id="@+id/et_address"
+                android:layout_weight="8"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:maxLength="9"
+                android:maxLines="1"
+                android:hint="@string/registrar_txt_direccion"
+                android:inputType="textCapWords"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="12dp"
+            android:weightSum="10"
+            android:layout_width="match_parent"
+            android:layout_height="42dp">
+
+            <ImageView android:src="@drawable/ic_business"
+                android:tint="@color/colorAccent"
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <Spinner android:id="@+id/sp_empresas_clientes"
+                android:layout_weight="7"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                style="@style/Widget.AppCompat.Spinner.Underlined"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="12dp"
+            android:weightSum="10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView android:src="@drawable/ic_birthday"
+                android:tint="@color/colorAccent"
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="42dp" />
+
+            <RelativeLayout android:layout_weight="7"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+                <TextView android:text="@string/registrar_txt_cumpleanos"
+                    android:layout_toLeftOf="@+id/iv_open_datepicker"
+                    android:layout_toStartOf="@+id/iv_open_datepicker"
+                    android:layout_centerVertical="true"
+                    android:textSize="17sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView" />
+
+                <ImageView android:id="@+id/iv_open_datepicker"
+                    android:src="@drawable/ic_arrow_drop_down"
+                    android:tint="@color/colorAccent"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/textView"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView android:text="@string/registrar_rb_estado_civil"
+                android:paddingLeft="16dp"
+                android:paddingStart="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <RadioGroup android:id="@+id/rg_estado_civil"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RadioButton android:id="@+id/rb_soltero"
+                    android:text="@string/registrar_rb_soltero"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton android:id="@+id/rb_casado"
+                    android:text="@string/registrar_rb_casado"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton android:id="@+id/rb_viudo"
+                    android:text="@string/registrar__rb_viudo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton android:id="@+id/rb_divorsiado"
+                    android:text="@string/registrar_rb_divorsiado"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <CheckBox android:id="@+id/cb_terminos_condiciones"
+            android:text="@string/registrar_aceptar_terminos_y_condiciones"
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <Button android:text="@string/registrar_btn_registrar_text"
+            android:id="@+id/btn_registrar"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</ScrollView>

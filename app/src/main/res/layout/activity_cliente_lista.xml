@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="10"
+    tools:context="com.jmarkstar.sesion4.activities.ClienteListaActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5">
+
+        <Button android:id="@+id/btn_agregar"
+            android:background="@color/colorAccent"
+            android:drawableLeft="@drawable/ic_person_add"
+            android:text="@string/lista_agregar_empleado"
+            android:textColor="@color/white"
+            android:paddingLeft="16dp"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8.5">
+
+        <ListView android:id="@+id/lv_lista_clientes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <TextView android:id="@+id/tv_mensaje_vacio"
+            android:layout_centerInParent="true"
+            android:text="@string/lista_mensje_vacio"
+            android:textStyle="bold"
+            android:textSize="19sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+</LinearLayout>

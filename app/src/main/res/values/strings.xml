@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Sesion 4</string>
+    <string name="lista_mensje_vacio">Aún no tienes clientes.</string>
+    <string name="lista_agregar_empleado">Agregar</string>
+    <string name="registrar_txt_direccion">Dirección</string>
+    <string name="registrar_txt_celular">Celular</string>
+    <string name="registrar_btn_registrar_text">Registrar</string>
+    <string name="registrar_aceptar_terminos_y_condiciones">Aceptar Terminos y condiciones</string>
+    <string name="registrar_rb_divorsiado">Divorsiado</string>
+    <string name="registrar__rb_viudo">Viudo</string>
+    <string name="registrar_rb_casado">Casado</string>
+    <string name="registrar_rb_soltero">Soltero</string>
+    <string name="registrar_rb_estado_civil">Estado Civil</string>
+    <string name="registrar_txt_cumpleanos">Cumpleaños</string>
+    <string name="registrar_txt_nombre_completo">Nombre Completo</string>
+    <string name="registrar_txt_email">Email</string>
+    <string name="registrar_txt_telefono">Telefono</string>
+</resources>
