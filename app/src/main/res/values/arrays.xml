@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="empresas_clientes">
+        <item>Seleccione Empresa</item>
+        <item>Claro Peru</item>
+        <item>Telefonica</item>
+        <item>Interbank</item>
+        <item>BCP</item>
+        <item>Profuturo</item>
+        <item>Ford</item>
+        <item>Cineplanet</item>
+    </string-array>
+</resources>

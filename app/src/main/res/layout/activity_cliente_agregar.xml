@@ -96,7 +96,6 @@
                 android:layout_weight="8"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:maxLength="9"
                 android:maxLines="1"
                 android:hint="@string/registrar_txt_direccion"
                 android:inputType="textCapWords"/>
@@ -136,6 +135,7 @@
                 android:layout_height="42dp" />
 
             <RelativeLayout android:layout_weight="7"
+                android:id="@+id/rl_cumpleanio"
                 android:layout_width="0dp"
                 android:layout_height="match_parent">
 
@@ -146,14 +146,14 @@
                     android:textSize="17sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView" />
+                    android:id="@+id/tv_cumpleanio" />
 
                 <ImageView android:id="@+id/iv_open_datepicker"
                     android:src="@drawable/ic_arrow_drop_down"
                     android:tint="@color/colorAccent"
                     android:layout_width="40dp"
                     android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/textView"
+                    android:layout_alignTop="@+id/tv_cumpleanio"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true" />
 
@@ -203,18 +203,18 @@
 
         </LinearLayout>
 
-        <CheckBox android:id="@+id/cb_terminos_condiciones"
-            android:text="@string/registrar_aceptar_terminos_y_condiciones"
+        <CheckBox android:id="@+id/cb_tiene_hijos"
+            android:text="@string/registrar_tiene_hijos"
             android:layout_marginTop="12dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
 
         <Button android:text="@string/registrar_btn_registrar_text"
             android:id="@+id/btn_registrar"
             android:layout_gravity="center_horizontal"
             android:layout_width="120dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"/>
 
     </LinearLayout>
 

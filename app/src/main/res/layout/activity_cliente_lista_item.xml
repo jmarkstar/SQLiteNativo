@@ -32,4 +32,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <ImageView android:id="@+id/iv_edit"
+        android:src="@drawable/ic_edit"
+        android:tint="@color/colorAccent"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/tv_telefono"
+        android:layout_width="30dp"
+        android:layout_height="30dp" />
+
 </RelativeLayout>

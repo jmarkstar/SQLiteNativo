@@ -1,10 +1,12 @@
 package com.jmarkstar.sesion4.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by jmarkstar on 11/05/2017.
  */
-
-public class ClienteModel {
+public class ClienteModel implements Parcelable {
 
     public static final String TABLE_NAME = "cliente";
     public static final String ID_FIELD = "id";
@@ -15,6 +17,7 @@ public class ClienteModel {
     public static final String ID_EMPRESA_FIELD = "id_empresa";
     public static final String FECHA_NAC_FIELD = "fecha_nac";
     public static final String ID_ESTADO_CIVIL_FIELD = "id_estado_civil";
+    public static final String TIENE_HIJOS_FIELD = "tiene_hijos";
 
     private Integer id;
     private String nombreCompleto;
@@ -24,6 +27,7 @@ public class ClienteModel {
     private Integer idEmpresaCliente;
     private String fechNacimiento;
     private Integer idEstadoCivil;
+    private Boolean tieneHijos;
 
     public Integer getId() {
         return id;
@@ -88,4 +92,71 @@ public class ClienteModel {
     public void setIdEstadoCivil(Integer idEstadoCivil) {
         this.idEstadoCivil = idEstadoCivil;
     }
+
+    public Boolean getTieneHijos() {
+        return tieneHijos;
+    }
+
+    public void setTieneHijos(Boolean tieneHijos) {
+        this.tieneHijos = tieneHijos;
+    }
+
+
+
+    @Override public String toString() {
+        return "ClienteModel{" +
+                "id=" + id +
+                ", nombreCompleto='" + nombreCompleto + '\'' +
+                ", email='" + email + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", idEmpresaCliente=" + idEmpresaCliente +
+                ", fechNacimiento='" + fechNacimiento + '\'' +
+                ", idEstadoCivil=" + idEstadoCivil +
+                ", tieneHijos=" + tieneHijos +
+                '}';
+    }
+
+    @Override public int describeContents() {
+        return 0;
+    }
+
+    @Override public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(this.id);
+        dest.writeString(this.nombreCompleto);
+        dest.writeString(this.email);
+        dest.writeString(this.telefono);
+        dest.writeString(this.direccion);
+        dest.writeValue(this.idEmpresaCliente);
+        dest.writeString(this.fechNacimiento);
+        dest.writeValue(this.idEstadoCivil);
+        dest.writeValue(this.tieneHijos);
+    }
+
+    public ClienteModel() {
+    }
+
+    protected ClienteModel(Parcel in) {
+        this.id = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.nombreCompleto = in.readString();
+        this.email = in.readString();
+        this.telefono = in.readString();
+        this.direccion = in.readString();
+        this.idEmpresaCliente = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.fechNacimiento = in.readString();
+        this.idEstadoCivil = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.tieneHijos = (Boolean) in.readValue(Boolean.class.getClassLoader());
+    }
+
+    public static final Parcelable.Creator<ClienteModel> CREATOR = new Parcelable.Creator<ClienteModel>() {
+        @Override
+        public ClienteModel createFromParcel(Parcel source) {
+            return new ClienteModel(source);
+        }
+
+        @Override
+        public ClienteModel[] newArray(int size) {
+            return new ClienteModel[size];
+        }
+    };
 }

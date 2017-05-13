@@ -24,7 +24,8 @@ public class Sesion4DatabaseHelper extends SQLiteOpenHelper {
             .append(ClienteModel.DIRECCION_FIELD+" TEXT, ")
             .append(ClienteModel.ID_EMPRESA_FIELD+" INTEGER, ")
             .append(ClienteModel.FECHA_NAC_FIELD+" TEXT, ")
-            .append(ClienteModel.ID_ESTADO_CIVIL_FIELD+" INTEGER ")
+            .append(ClienteModel.ID_ESTADO_CIVIL_FIELD+" INTEGER, ")
+            .append(ClienteModel.TIENE_HIJOS_FIELD+" INTEGER ")
             .append(")");
 
     private final StringBuffer SQL_DELETE_TABLE_CLIENTE = new StringBuffer()

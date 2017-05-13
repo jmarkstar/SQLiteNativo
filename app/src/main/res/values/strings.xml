@@ -5,7 +5,7 @@
     <string name="registrar_txt_direccion">Dirección</string>
     <string name="registrar_txt_celular">Celular</string>
     <string name="registrar_btn_registrar_text">Registrar</string>
-    <string name="registrar_aceptar_terminos_y_condiciones">Aceptar Terminos y condiciones</string>
+    <string name="registrar_tiene_hijos">Tiene Hijos?</string>
     <string name="registrar_rb_divorsiado">Divorsiado</string>
     <string name="registrar__rb_viudo">Viudo</string>
     <string name="registrar_rb_casado">Casado</string>
@@ -15,4 +15,20 @@
     <string name="registrar_txt_nombre_completo">Nombre Completo</string>
     <string name="registrar_txt_email">Email</string>
     <string name="registrar_txt_telefono">Telefono</string>
+    <string name="registrar_validacion_nombre_vacio">Debes ingresar el nombre completo del cliente.</string>
+    <string name="registrar_validacion_email_vacio">Debes ingresar el email del cliente.</string>
+    <string name="registrar_validacion_email_incorrecto">El email es incorrecto.</string>
+    <string name="registrar_validacion_telefono_vacio">Debes ingresar el telefono del cliente.</string>
+    <string name="registrar_validacion_telefono_incorrecto">El telefono es incorrecto.</string>
+    <string name="registrar_validacion_direccion_vacio">Debes ingresar la dirección del cliente.</string>
+    <string name="registrar_validacion_estado_civil_no_selecionado">Debes seleccionar un estado civil.</string>
+    <string name="registrar_validacion_cumpleanos_vacio">Debes selecionar el cumpleaños del cliente.</string>
+    <string name="registrar_msj_correcto">El cliente se guardo correctamente.</string>
+    <string name="registro_msj_error">Ocurrio un error al guardar el registro.</string>
+    <string name="register_validacion_selecione_empresa">Debes selecionar una Empresa.</string>
+    <string name="lista_dialog_eliminar_msj">Desea eliminar este registro?</string>
+    <string name="dialog_aceptar">ACEPTAR</string>
+    <string name="dialog_cancelar">CANCELAR</string>
+    <string name="lista_eliminar_correcto">El registro fue eliminado correctamente.</string>
+    <string name="lista_eliminar_error">Ocurrió un problema al eliminar el registro.</string>
 </resources>

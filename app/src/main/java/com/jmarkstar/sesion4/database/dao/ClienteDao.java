@@ -5,20 +5,17 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
-
 import com.jmarkstar.sesion4.database.Sesion4DatabaseHelper;
 import com.jmarkstar.sesion4.model.ClienteModel;
-
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by jmarkstar on 12/05/2017.
  */
-
 public class ClienteDao {
 
-    public static final String TAG = "ClienteDao";
+    private static final String TAG = "ClienteDao";
 
     private final String ALL_COLUMNS [] = {ClienteModel.ID_FIELD,
             ClienteModel.NOMBRE_FIELD,
@@ -27,7 +24,8 @@ public class ClienteDao {
             ClienteModel.DIRECCION_FIELD,
             ClienteModel.ID_EMPRESA_FIELD,
             ClienteModel.FECHA_NAC_FIELD,
-            ClienteModel.ID_ESTADO_CIVIL_FIELD};
+            ClienteModel.ID_ESTADO_CIVIL_FIELD,
+            ClienteModel.TIENE_HIJOS_FIELD};
 
     private SQLiteDatabase mSQLiteDatabase;
 
@@ -44,9 +42,11 @@ public class ClienteDao {
         return null;
     }
 
-    public void insertCliente(ClienteModel clienteModel){
+    public long insertCliente(ClienteModel clienteModel){
         long status = mSQLiteDatabase.insert(ClienteModel.TABLE_NAME, null, convertClienteToContentValues(clienteModel));
+        //En metodo 'insert' retorna un long, podría ser el ID de la fila o -1 si ocurre un error.
         Log.v(TAG,"status = "+status);
+        return status;
     }
 
     public void updateCliente(ClienteModel clienteModel){
@@ -54,15 +54,14 @@ public class ClienteDao {
         mSQLiteDatabase.update(ClienteModel.TABLE_NAME, convertClienteToContentValues(clienteModel), strFilter, null);
     }
 
-    private void deleteCliente(Integer idCliente){
+    public int eliminarCliente(Integer idCliente){
         String strWhere = ClienteModel.ID_FIELD+"=?";
         String [] whereArgs = new String [] { String.valueOf(idCliente) };
-        mSQLiteDatabase.delete(ClienteModel.TABLE_NAME, strWhere, whereArgs);
+        return mSQLiteDatabase.delete(ClienteModel.TABLE_NAME, strWhere, whereArgs);
     }
 
     private ContentValues convertClienteToContentValues(ClienteModel cliente){
         ContentValues contentValues = new ContentValues();
-        //contentValues.put(ClienteModel.ID_FIELD, cliente.getId());
         contentValues.put(ClienteModel.NOMBRE_FIELD, cliente.getNombreCompleto());
         contentValues.put(ClienteModel.EMAIL_FIELD, cliente.getEmail());
         contentValues.put(ClienteModel.TELEFONO_FIELD, cliente.getTelefono());
@@ -70,6 +69,11 @@ public class ClienteDao {
         contentValues.put(ClienteModel.ID_EMPRESA_FIELD, cliente.getIdEmpresaCliente());
         contentValues.put(ClienteModel.FECHA_NAC_FIELD, cliente.getFechNacimiento());
         contentValues.put(ClienteModel.ID_ESTADO_CIVIL_FIELD, cliente.getIdEstadoCivil());
+
+        //debido a que SQLite no puede guardar booleanos, estamos convirtiendo el Boolean a Integer
+        //para poder guardar.
+        Integer tieneHijosInteger = cliente.getTieneHijos()?1:0;
+        contentValues.put(ClienteModel.TIENE_HIJOS_FIELD, tieneHijosInteger);
         return contentValues;
     }
 
@@ -86,6 +90,11 @@ public class ClienteDao {
                 clienteItem.setIdEmpresaCliente(mCursor.getInt(mCursor.getColumnIndex(ClienteModel.ID_EMPRESA_FIELD)));
                 clienteItem.setFechNacimiento(mCursor.getString(mCursor.getColumnIndex(ClienteModel.FECHA_NAC_FIELD)));
                 clienteItem.setIdEstadoCivil(mCursor.getInt(mCursor.getColumnIndex(ClienteModel.ID_ESTADO_CIVIL_FIELD)));
+
+                //recuperando Integer y convirtiendolo a Booleano.
+                Boolean tieneHijos = mCursor.getInt(mCursor.getColumnIndex(ClienteModel.TIENE_HIJOS_FIELD)) == 1;
+                clienteItem.setTieneHijos(tieneHijos);
+
                 arrClientes.add(clienteItem);
             }while (mCursor.moveToNext());
         }
