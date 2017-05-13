@@ -34,6 +34,10 @@ public class ClienteListaActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cliente_lista);
         ButterKnife.bind(this);
+
+        //agregando titulo a la pantalla
+        setTitle(getString(R.string.lista_titulo));
+
         mClienteDao = new ClienteDao(this);
 
         mLvClientes.setOnItemClickListener(this);

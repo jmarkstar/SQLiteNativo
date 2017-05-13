@@ -60,6 +60,9 @@ public class ClienteAgregarActivity extends AppCompatActivity {
         //Iniciando la libreria ButterKnife en el Activity.
         ButterKnife.bind(this);
 
+        //agregando titulo a la pantalla
+        setTitle(getString(R.string.registrar_titutlo));
+
         //Iniciando nuestro DAO.
         mClienteDao = new ClienteDao(this);
 

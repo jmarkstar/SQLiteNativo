@@ -2,6 +2,11 @@
     <string name="app_name">Sesion 4</string>
     <string name="lista_mensje_vacio">Aún no tienes clientes.</string>
     <string name="lista_agregar_empleado">Agregar</string>
+    <string name="lista_eliminar_correcto">El registro fue eliminado correctamente.</string>
+    <string name="lista_eliminar_error">Ocurrió un problema al eliminar el registro.</string>
+    <string name="lista_titulo">Lista de Clientes</string>
+    <string name="lista_dialog_eliminar_msj">Desea eliminar este registro?</string>
+
     <string name="registrar_txt_direccion">Dirección</string>
     <string name="registrar_txt_celular">Celular</string>
     <string name="registrar_btn_registrar_text">Registrar</string>
@@ -26,9 +31,8 @@
     <string name="registrar_msj_correcto">El cliente se guardo correctamente.</string>
     <string name="registro_msj_error">Ocurrio un error al guardar el registro.</string>
     <string name="register_validacion_selecione_empresa">Debes selecionar una Empresa.</string>
-    <string name="lista_dialog_eliminar_msj">Desea eliminar este registro?</string>
+    <string name="registrar_titutlo">Agregar Cliente</string>
+
     <string name="dialog_aceptar">ACEPTAR</string>
     <string name="dialog_cancelar">CANCELAR</string>
-    <string name="lista_eliminar_correcto">El registro fue eliminado correctamente.</string>
-    <string name="lista_eliminar_error">Ocurrió un problema al eliminar el registro.</string>
 </resources>
