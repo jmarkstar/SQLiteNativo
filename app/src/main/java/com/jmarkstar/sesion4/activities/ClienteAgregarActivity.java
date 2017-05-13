@@ -1,11 +1,14 @@
 package com.jmarkstar.sesion4.activities;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
@@ -63,6 +66,9 @@ public class ClienteAgregarActivity extends AppCompatActivity {
         //agregando titulo a la pantalla
         setTitle(getString(R.string.registrar_titutlo));
 
+        //ClienteModel clienteActualizar = getIntent().getParcelableExtra(CLIENTE);
+        //Log.v(TAG, "clienteActualizar - "+clienteActualizar.toString());
+
         //Iniciando nuestro DAO.
         mClienteDao = new ClienteDao(this);
 
@@ -71,6 +77,7 @@ public class ClienteAgregarActivity extends AppCompatActivity {
         ArrayAdapter<String> adapterSpinner = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, empresaClientesArray);
         adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mSpEmpresasClientes.setAdapter(adapterSpinner);
+
         mSpEmpresasClientes.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 mEmpresaClienteSeleccionado = position;
@@ -78,6 +85,22 @@ public class ClienteAgregarActivity extends AppCompatActivity {
 
             @Override public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
+
+        /* Este listener nos permite ocultar el keyboard del dispositivo cuando el usuario
+        // hace click en el spinner.
+        * */
+        mSpEmpresasClientes.setOnTouchListener(new View.OnTouchListener() {
+            @Override public boolean onTouch(View v, MotionEvent event) {
+
+                View view = getCurrentFocus();
+                if (view != null) {
+                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
+
+                return false;
             }
         });
 
@@ -157,7 +180,7 @@ public class ClienteAgregarActivity extends AppCompatActivity {
         long status = mClienteDao.insertCliente(cliente);
         if(status>0){
             mostrarMensaje(getString(R.string.registrar_msj_correcto));
-            finish();
+            finish();//este metodo cierra la pantalla o mata el activity.
         }else{
             mostrarMensaje(getString(R.string.registro_msj_error));
         }

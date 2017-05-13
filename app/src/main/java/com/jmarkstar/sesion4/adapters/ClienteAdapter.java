@@ -21,6 +21,8 @@ import java.util.List;
  */
 public class ClienteAdapter extends ArrayAdapter<ClienteModel> {
 
+    private static final String TAG = "ClienteAdapter";
+
     public ClienteAdapter(@NonNull Context context, @NonNull List<ClienteModel> objects) {
         super(context, 0, objects);
     }
@@ -29,6 +31,7 @@ public class ClienteAdapter extends ArrayAdapter<ClienteModel> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         ClienteModel cliente = getItem(position);
+        Log.d(TAG, "cliente = "+cliente.toString());
 
         if(convertView == null){
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.activity_cliente_lista_item, parent, false);
@@ -37,8 +40,10 @@ public class ClienteAdapter extends ArrayAdapter<ClienteModel> {
         TextView tvEmpresa = (TextView)convertView.findViewById(R.id.tv_empresa_cliente);
         TextView tvTelefono = (TextView)convertView.findViewById(R.id.tv_telefono);
         TextView tvNombreCompleto = (TextView)convertView.findViewById(R.id.tv_nombre_completo);
+
         ImageView ivEdit = (ImageView)convertView.findViewById(R.id.iv_edit);
         ivEdit.setTag(position);
+
         ivEdit.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 Integer position = (Integer)v.getTag();
@@ -52,8 +57,8 @@ public class ClienteAdapter extends ArrayAdapter<ClienteModel> {
 
         //Para obtener el nombre de la empresa que el usuario ha selecionado antes, tenemos que buscarlo en el array xml.
         String [] empresasArray = getContext().getResources().getStringArray(R.array.empresas_clientes);
-        tvEmpresa.setText(empresasArray[cliente.getIdEmpresaCliente()]);
 
+        tvEmpresa.setText(empresasArray[cliente.getIdEmpresaCliente()]);
         tvTelefono.setText(cliente.getTelefono());
         tvNombreCompleto.setText(cliente.getNombreCompleto());
 

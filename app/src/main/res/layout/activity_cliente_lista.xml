@@ -23,6 +23,13 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true" />
 
+        <TextView android:id="@+id/tv_cantidad_lista"
+            android:layout_below="@+id/btn_agregar"
+            android:layout_centerHorizontal="true"
+            android:text="Tiene 10 items"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
     </RelativeLayout>
 
     <RelativeLayout

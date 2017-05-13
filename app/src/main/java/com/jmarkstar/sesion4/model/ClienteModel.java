@@ -4,6 +4,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
+ * Podemos usar Parcelable o Serializable para poder pasar datos entre activities.
+ *
  * Created by jmarkstar on 11/05/2017.
  */
 public class ClienteModel implements Parcelable {
@@ -101,9 +103,8 @@ public class ClienteModel implements Parcelable {
         this.tieneHijos = tieneHijos;
     }
 
-
-
-    @Override public String toString() {
+    @Override
+    public String toString() {
         return "ClienteModel{" +
                 "id=" + id +
                 ", nombreCompleto='" + nombreCompleto + '\'' +
@@ -117,20 +118,22 @@ public class ClienteModel implements Parcelable {
                 '}';
     }
 
+    //METODO PARCELABLE
+
     @Override public int describeContents() {
         return 0;
     }
 
-    @Override public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(this.id);
-        dest.writeString(this.nombreCompleto);
-        dest.writeString(this.email);
-        dest.writeString(this.telefono);
-        dest.writeString(this.direccion);
-        dest.writeValue(this.idEmpresaCliente);
-        dest.writeString(this.fechNacimiento);
-        dest.writeValue(this.idEstadoCivil);
-        dest.writeValue(this.tieneHijos);
+    @Override public void writeToParcel(Parcel destino, int flags) {
+        destino.writeValue(this.id);
+        destino.writeString(this.nombreCompleto);
+        destino.writeString(this.email);
+        destino.writeString(this.telefono);
+        destino.writeString(this.direccion);
+        destino.writeValue(this.idEmpresaCliente);
+        destino.writeString(this.fechNacimiento);
+        destino.writeValue(this.idEstadoCivil);
+        destino.writeValue(this.tieneHijos);
     }
 
     public ClienteModel() {

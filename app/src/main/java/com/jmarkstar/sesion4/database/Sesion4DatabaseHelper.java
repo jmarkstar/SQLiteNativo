@@ -41,7 +41,7 @@ public class Sesion4DatabaseHelper extends SQLiteOpenHelper {
      * */
     @Override public void onCreate(SQLiteDatabase db) {
 
-        //El metod execSQL() de la clase SQLiteDatabase ejecuta cualquier sentencia SQL.
+        //El metodo execSQL() de la clase SQLiteDatabase ejecuta cualquier sentencia SQL.
         //recibe como parametro un String.
 
         db.execSQL(SQL_CREATE_TABLE_CLIENTE.toString());
@@ -60,5 +60,11 @@ public class Sesion4DatabaseHelper extends SQLiteOpenHelper {
 
         //llamammos al metodo onCreate() para ejecutar su contenido que en este caso es crear la tabla cliente.
         onCreate(db);
+    }
+
+    @Override
+    public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        super.onDowngrade(db, oldVersion, newVersion);
+
     }
 }

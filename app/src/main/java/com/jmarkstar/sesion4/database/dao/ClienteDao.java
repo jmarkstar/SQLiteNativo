@@ -3,6 +3,7 @@ package com.jmarkstar.sesion4.database.dao;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import com.jmarkstar.sesion4.database.Sesion4DatabaseHelper;
@@ -17,7 +18,8 @@ public class ClienteDao {
 
     private static final String TAG = "ClienteDao";
 
-    private final String ALL_COLUMNS [] = {ClienteModel.ID_FIELD,
+    private final String ALL_COLUMNS [] = {
+            ClienteModel.ID_FIELD,
             ClienteModel.NOMBRE_FIELD,
             ClienteModel.EMAIL_FIELD,
             ClienteModel.TELEFONO_FIELD,
@@ -43,6 +45,19 @@ public class ClienteDao {
     }
 
     public long insertCliente(ClienteModel clienteModel){
+
+        /*try{
+            //escribirmos nuestra sentencia sql.
+        }catch(SQLException ex){
+            Log.v(TAG, "ex - "+ex);
+        }*/
+
+        /*
+        mSQLiteDatabase.beginTransaction();
+        //podemos todos los sql que queremos ejecutar.
+        mSQLiteDatabase.endTransaction();
+        */
+
         long status = mSQLiteDatabase.insert(ClienteModel.TABLE_NAME, null, convertClienteToContentValues(clienteModel));
         //En metodo 'insert' retorna un long, podría ser el ID de la fila o -1 si ocurre un error.
         Log.v(TAG,"status = "+status);

@@ -10,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.jmarkstar.sesion4.R;
 import com.jmarkstar.sesion4.adapters.ClienteAdapter;
 import com.jmarkstar.sesion4.database.dao.ClienteDao;
@@ -25,6 +24,7 @@ public class ClienteListaActivity extends AppCompatActivity
 
     @BindView(R.id.lv_lista_clientes) ListView mLvClientes;
     @BindView(R.id.tv_mensaje_vacio) TextView mTvListaVacia;
+    @BindView(R.id.tv_cantidad_lista) TextView mTvCantidadLista;
 
     private ClienteDao mClienteDao;
     private ClienteAdapter mClienteAdapter;
@@ -40,6 +40,7 @@ public class ClienteListaActivity extends AppCompatActivity
 
         mClienteDao = new ClienteDao(this);
 
+        //pasandole el evento onItemClick de nuestro activity al listview.
         mLvClientes.setOnItemClickListener(this);
     }
 
@@ -48,11 +49,14 @@ public class ClienteListaActivity extends AppCompatActivity
         mClientes = mClienteDao.getClientes();
         if(mClientes.size() > 0){
             mLvClientes.setVisibility(View.VISIBLE);
+            mTvCantidadLista.setVisibility(View.VISIBLE);
             mTvListaVacia.setVisibility(View.GONE);
             mClienteAdapter = new ClienteAdapter(this, mClientes);
             mLvClientes.setAdapter(mClienteAdapter);
+            mTvCantidadLista.setText("Tienes "+mClientes.size()+" items");
         }else{
             mLvClientes.setVisibility(View.GONE);
+            mTvCantidadLista.setVisibility(View.GONE);
             mTvListaVacia.setVisibility(View.VISIBLE);
         }
     }
@@ -74,7 +78,19 @@ public class ClienteListaActivity extends AppCompatActivity
                 if(success != 0){
                     mostrarMensaje(getString(R.string.lista_eliminar_correcto));
                     mClientes.remove(position);
-                    mClienteAdapter.notifyDataSetChanged();
+
+                    if(mClientes.size()>0){
+                        //nos permite refrescar el adapter oor hemos eliminado un dato.
+                        mClienteAdapter.notifyDataSetChanged();
+                        mTvCantidadLista.setText("Tienes "+mClientes.size()+" items");
+                        mLvClientes.setVisibility(View.VISIBLE);
+                        mTvListaVacia.setVisibility(View.VISIBLE);
+                        mTvListaVacia.setVisibility(View.GONE);
+                    }else{
+                        mLvClientes.setVisibility(View.GONE);
+                        mTvCantidadLista.setVisibility(View.GONE);
+                        mTvListaVacia.setVisibility(View.VISIBLE);
+                    }
                 }else{
                     mostrarMensaje(getString(R.string.lista_eliminar_error));
                 }
