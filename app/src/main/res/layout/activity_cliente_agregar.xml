@@ -210,7 +210,7 @@
             android:layout_height="wrap_content" />
 
         <Button android:text="@string/registrar_btn_registrar_text"
-            android:id="@+id/btn_registrar"
+            android:id="@+id/btn_accion"
             android:layout_gravity="center_horizontal"
             android:layout_width="120dp"
             android:layout_height="wrap_content"

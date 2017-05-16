@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -32,8 +33,9 @@ import butterknife.OnClick;
  * */
 public class ClienteAgregarActivity extends AppCompatActivity {
 
-    public static final String CLIENTE = "cliente_editar";
     private static final String TAG = "ClienteAgregarActivity";
+
+    public static final String CLIENTE = "cliente_editar";
 
     @BindView(R.id.et_nombre_completo) EditText mEtNombreCompleto;
     @BindView(R.id.et_email) EditText mEtEmail;
@@ -43,6 +45,7 @@ public class ClienteAgregarActivity extends AppCompatActivity {
     @BindView(R.id.tv_cumpleanio) TextView mTvCumpleanio;
     @BindView(R.id.rg_estado_civil) RadioGroup mRgEstadoCivil;
     @BindView(R.id.cb_tiene_hijos) CheckBox mCbTieneHijos;
+    @BindView(R.id.btn_accion) Button mBtnAccion;
 
     private ClienteDao mClienteDao;
 
@@ -56,18 +59,14 @@ public class ClienteAgregarActivity extends AppCompatActivity {
     private int anio, mes, dia;
     private String mFechaSelecionada = null;
 
+    private ClienteModel clienteActualizar = null;
+
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cliente_agregar);
 
         //Iniciando la libreria ButterKnife en el Activity.
         ButterKnife.bind(this);
-
-        //agregando titulo a la pantalla
-        setTitle(getString(R.string.registrar_titutlo));
-
-        //ClienteModel clienteActualizar = getIntent().getParcelableExtra(CLIENTE);
-        //Log.v(TAG, "clienteActualizar - "+clienteActualizar.toString());
 
         //Iniciando nuestro DAO.
         mClienteDao = new ClienteDao(this);
@@ -125,16 +124,68 @@ public class ClienteAgregarActivity extends AppCompatActivity {
             }
         });
 
-        //Iniciando valores de anio, mes y dia con la fecha actual.
-        Calendar calendar = Calendar.getInstance();
-        anio = calendar.get(Calendar.YEAR);
-        mes = calendar.get(Calendar.MONTH);
-        dia = calendar.get(Calendar.DAY_OF_MONTH);
+        //VALIDACION SI LA OPERACION SERA PARA EDITAR O AGREGAR.
+
+        clienteActualizar = getIntent().getParcelableExtra(CLIENTE);
+        if(clienteActualizar!=null){
+            Log.v(TAG, "clienteActualizar - "+clienteActualizar.toString());
+            //agregando titulo a la pantalla
+            setTitle(getString(R.string.editar_titulo));
+            mBtnAccion.setText(R.string.registrar_btn_action_editar);
+
+            mEtNombreCompleto.setText(clienteActualizar.getNombreCompleto());
+            mEtEmail.setText(clienteActualizar.getEmail());
+            mEtPhone.setText(clienteActualizar.getTelefono());
+            mEtAddress.setText(clienteActualizar.getDireccion());
+
+            //Precargando datos para el campo fecha de nacimiento
+            mFechaSelecionada = clienteActualizar.getFechNacimiento();
+            mTvCumpleanio.setText(clienteActualizar.getFechNacimiento());
+            mSpEmpresasClientes.setSelection(clienteActualizar.getIdEmpresaCliente());
+            String [] itemsDate = clienteActualizar.getFechNacimiento().split("/");
+            dia = Integer.parseInt(itemsDate[0]);
+            mes = Integer.parseInt(itemsDate[1])-1;//el mes comienza desde 0, por esa razon se resta 1
+            anio = Integer.parseInt(itemsDate[2]);
+
+            //Preseleccionando el id de estado civil selecionado.
+
+            //chambiando de valor a mEstadoCivilSeleccionado
+            mEstadoCivilSeleccionado = clienteActualizar.getIdEstadoCivil();
+
+            //preselecionando el radiobutton indicado segun getIdEstadoCivil().
+            int rbId = 0;
+            if(clienteActualizar.getIdEstadoCivil() == 1){
+                rbId = R.id.rb_soltero;
+            }else if(clienteActualizar.getIdEstadoCivil() == 2){
+                rbId = R.id.rb_casado;
+            }else if(clienteActualizar.getIdEstadoCivil() == 3){
+                rbId = R.id.rb_viudo;
+            }else if(clienteActualizar.getIdEstadoCivil() == 4){
+                rbId = R.id.rb_divorsiado;
+            }
+            //seleccionando el rb elegido.
+            mRgEstadoCivil.check(rbId);
+
+            mCbTieneHijos.setChecked(clienteActualizar.getTieneHijos());
+        }else{
+            //agregando titulo a la pantalla
+            setTitle(getString(R.string.registrar_titulo));
+            mBtnAccion.setText(R.string.registrar_btn_action_registrar);
+
+            //Iniciando valores de anio, mes y dia con la fecha actual.
+            Calendar calendar = Calendar.getInstance();
+            anio = calendar.get(Calendar.YEAR);
+            mes = calendar.get(Calendar.MONTH);
+            dia = calendar.get(Calendar.DAY_OF_MONTH);
+        }
     }
 
-    @OnClick(R.id.btn_registrar) public void onRegistrarNuevoCliente(){
+    @OnClick(R.id.btn_accion) public void onRegistrarNuevoCliente(){
         if(validarCampos()){
-            registrarCliente();
+            if(clienteActualizar == null)
+                registrarCliente();
+            else
+                editarCliente();
         }
     }
 
@@ -144,6 +195,7 @@ public class ClienteAgregarActivity extends AppCompatActivity {
          * el DatePicker retorna, porque para nosotros Datepicker es una cajanegra, la unica forma de como obtejer su valor
          * es por medio de este 'OnDateSetListener'.
          * */
+        Log.v(TAG, "dia = "+dia+" - mes = "+mes +" - anio = "+anio);
         DatePickerDialog mDatePicker = new DatePickerDialog(this, miDateListener, anio, mes, dia);
         mDatePicker.show();
     }
@@ -159,6 +211,10 @@ public class ClienteAgregarActivity extends AppCompatActivity {
             dia = dayOfMonth;
         }
     };
+
+    private void editarCliente() {
+        
+    }
 
     private void registrarCliente(){
         String nombreCompleto = mEtNombreCompleto.getText().toString();
