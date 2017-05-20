@@ -213,7 +213,26 @@ public class ClienteAgregarActivity extends AppCompatActivity {
     };
 
     private void editarCliente() {
-        
+        String nombreCompleto = mEtNombreCompleto.getText().toString();
+        String email = mEtEmail.getText().toString();
+        String phone = mEtPhone.getText().toString();
+        String address = mEtAddress.getText().toString();
+        clienteActualizar.setNombreCompleto(nombreCompleto);
+        clienteActualizar.setEmail(email);
+        clienteActualizar.setTelefono(phone);
+        clienteActualizar.setDireccion(address);
+        clienteActualizar.setFechNacimiento(mFechaSelecionada);
+        clienteActualizar.setIdEmpresaCliente(mEmpresaClienteSeleccionado);
+        clienteActualizar.setIdEstadoCivil(mEstadoCivilSeleccionado);
+        clienteActualizar.setTieneHijos(mCbTieneHijos.isChecked());
+        Log.v(TAG, clienteActualizar.toString());
+        int status = mClienteDao.updateCliente(clienteActualizar);
+        if(status>0){
+            mostrarMensaje(getString(R.string.editar_msj_correcto));
+            finish();//este metodo cierra la pantalla o mata el activity.
+        }else{
+            mostrarMensaje(getString(R.string.editar_msj_error));
+        }
     }
 
     private void registrarCliente(){

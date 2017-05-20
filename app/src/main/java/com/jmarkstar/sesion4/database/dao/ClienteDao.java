@@ -64,9 +64,9 @@ public class ClienteDao {
         return status;
     }
 
-    public void updateCliente(ClienteModel clienteModel){
-        String strFilter = ClienteModel.ID_FIELD+"=?"+clienteModel.getId();
-        mSQLiteDatabase.update(ClienteModel.TABLE_NAME, convertClienteToContentValues(clienteModel), strFilter, null);
+    public int updateCliente(ClienteModel clienteModel){
+        String strFilter = ClienteModel.ID_FIELD+"="+clienteModel.getId();
+        return mSQLiteDatabase.update(ClienteModel.TABLE_NAME, convertClienteToContentValues(clienteModel), strFilter, null);
     }
 
     public int eliminarCliente(Integer idCliente){

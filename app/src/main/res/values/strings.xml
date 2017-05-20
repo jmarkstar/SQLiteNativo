@@ -28,12 +28,14 @@
     <string name="registrar_validacion_direccion_vacio">Debes ingresar la dirección del cliente.</string>
     <string name="registrar_validacion_estado_civil_no_selecionado">Debes seleccionar un estado civil.</string>
     <string name="registrar_validacion_cumpleanos_vacio">Debes selecionar el cumpleaños del cliente.</string>
-    <string name="registrar_msj_correcto">El cliente se guardo correctamente.</string>
+    <string name="registrar_msj_correcto">El cliente se guardó correctamente.</string>
     <string name="registro_msj_error">Ocurrio un error al guardar el registro.</string>
     <string name="register_validacion_selecione_empresa">Debes selecionar una Empresa.</string>
     <string name="registrar_titulo">Agregar Cliente</string>
 
     <string name="editar_titulo">Editar Cliente</string>
+    <string name="editar_msj_error">Ocurrio un error al editar el registro.</string>
+    <string name="editar_msj_correcto">El cliente se editó correctamente.</string>
 
     <string name="dialog_aceptar">ACEPTAR</string>
     <string name="dialog_cancelar">CANCELAR</string>
